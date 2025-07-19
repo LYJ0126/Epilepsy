@@ -1,0 +1,101 @@
+<!-- pages/aiagent/aiagent.wxml -->
+<custom-navbar title="癫痫健康助手" show-back="{{false}}" show-emergency="{{true}}"></custom-navbar>
+
+<view class="container" style="padding-top: {{navbarHeight}}px;">
+  <!-- 聊天历史 -->
+  <scroll-view 
+    class="chat-history" 
+    scroll-y 
+    scroll-with-animation 
+    scroll-top="{{scrollTop}}"
+    enable-back-to-top
+    refresher-enabled="{{true}}"
+    refresher-triggered="{{refreshing}}"
+    bindrefresherrefresh="onRefresh"
+  >
+    <block wx:for="{{chatHistory}}" wx:key="index">
+      <view class="chat-bubble {{item.role}}">
+        <view class="avatar">
+          <image 
+            src="{{item.role === 'user' ? '/images/icons/user-avatar.png' : '/images/icons/ai-avatar.png'}}" 
+            mode="aspectFit"
+          ></image>
+        </view>
+        
+        <view class="bubble-content">
+          <view class="message">
+            <text>{{item.content}}</text>
+          </view>
+          
+          <!-- 结构化结果显示 -->
+          <view wx:if="{{item.role === 'assistant' && item.structuredAnswer}}" class="structured-answer">
+            <view class="risk-level risk-{{item.structuredAnswer.risk_level}}">
+              <text>风险级别: {{item.structuredAnswer.risk_level}}</text>
+            </view>
+            <view class="section">
+              <text class="section-title">核心建议</text>
+              <text class="section-content">{{item.structuredAnswer.main_advice}}</text>
+            </view>
+            <view class="section">
+              <text class="section-title">详细分析</text>
+              <text class="section-content">{{item.structuredAnswer.detailed_analysis}}</text>
+            </view>
+          </view>
+          
+          <view class="timestamp">
+            <text>{{item.timestamp}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  
+  <!-- 超时提示 -->
+  <view wx:if="{{showTimeoutWarning}}" class="timeout-warning">
+    <image src="/images/icons/hourglass.png" class="warning-icon"></image>
+    <text class="warning-text">AI思考中，已耗时{{processingTime}}秒...</text>
+    <text class="hint-text">复杂问题可能需要更长时间，请耐心等待</text>
+  </view>
+  
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <input 
+      value="{{question}}" 
+      placeholder="输入关于癫痫的问题..." 
+      placeholder-class="placeholder"
+      bindinput="onInputQuestion"
+      confirm-type="send"
+      bindconfirm="askQuestion"
+      disabled="{{loading}}"
+      class="question-input"
+    />
+    
+    <button 
+      bindtap="askQuestion" 
+      disabled="{{loading}}"
+      class="send-btn"
+      hover-class="send-btn-hover"
+    >
+      <image 
+        src="{{loading ? '/images/icons/loading.gif' : '/images/icons/send.png'}}" 
+        class="send-icon"
+      ></image>
+    </button>
+  </view>
+  
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button bindtap="copyAnswer" size="mini" class="action-btn">
+      <image src="/images/icons/copy.png" class="action-icon"></image>
+      <text>复制答案</text>
+    </button>
+    <button bindtap="reaskQuestion" size="mini" class="action-btn">
+      <image src="/images/icons/refresh.png" class="action-icon"></image>
+      <text>重新提问</text>
+    </button>
+    <button bindtap="callEmergency" size="mini" class="action-btn emergency-btn">
+      <image src="/images/icons/emergency.png" class="action-icon"></image>
+      <text>紧急求助</text>
+    </button>
+  </view>
+</view>

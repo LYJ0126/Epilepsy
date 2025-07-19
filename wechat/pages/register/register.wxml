@@ -1,0 +1,34 @@
+<view class="register-container">
+  <image class="logo" src="/images/logo.png"></image>
+  
+  <view class="form">
+    <view class="input-group">
+      <text class="label">用户名</text>
+      <input class="input" placeholder="请输入用户名" value="{{username}}" bindinput="onUsernameInput" />
+    </view>
+    
+    <view class="input-group">
+      <text class="label">密码</text>
+      <input class="input" password placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+    </view>
+    
+    <view class="input-group">
+      <text class="label">确认密码</text>
+      <input class="input" password placeholder="请再次输入密码" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+    </view>
+    
+    <button class="register-btn" type="primary" bindtap="onRegister">注册</button>
+    
+    <view class="login-link" bindtap="onLogin">
+      <text>已有账号？立即登录</text>
+    </view>
+  </view>
+  
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>注册中...</text>
+  </view>
+  
+  <view class="error-message" wx:if="{{errorMessage}}">
+    {{errorMessage}}
+  </view>
+</view>

@@ -1,0 +1,104 @@
+<view class="container">
+  <view class="header">
+    <text class="title">{{userInfo.name}}的健康档案</text>
+    <text class="update-time">最后更新: {{lastUpdate}}</text>
+  </view>
+
+  <view class="info-card">
+    <view class="card-title">基本信息</view>
+    <view class="info-item">
+      <text class="info-label">姓名</text>
+      <block wx:if="{{!isEditing}}">
+        <text class="info-value">{{userInfo.name}}</text>
+      </block>
+      <block wx:else>
+        <input 
+          class="info-value" 
+          type="text" 
+          data-field="name" 
+          value="{{userInfo.name}}" 
+          placeholder="请输入姓名"
+          maxlength="20"
+          bindinput="handleInputChange"/>
+      </block>
+    </view>
+    <view class="info-item">
+      <text class="info-label">性别</text>
+      <block wx:if="{{!isEditing}}">
+        <text class="info-value">{{userInfo.gender}}</text>
+      </block>
+      <block wx:else>
+        <picker 
+          class="info-value" 
+          mode="selector" 
+          range="{{['男','女']}}" 
+          value="{{userInfo.gender === '男' ? 0 : 1}}"
+          data-field="gender" 
+          bindchange="handlePickerChange">
+          <text>{{userInfo.gender}}</text>
+        </picker>
+      </block>
+    </view>
+
+    <view class="info-item">
+      <text class="info-label">年龄</text>
+      <block wx:if="{{!isEditing}}">
+        <text class="info-value">{{userInfo.age}}岁</text>
+      </block>
+      <block wx:else>
+        <input class="info-value" type="number" data-field="age" value="{{userInfo.age}}" bindinput="handleInputChange"/>
+      </block>
+    </view>
+
+    <view class="info-item">
+      <text class="info-label">身高</text>
+      <block wx:if="{{!isEditing}}">
+        <text class="info-value">{{userInfo.height}}cm</text>
+      </block>
+      <block wx:else>
+        <input class="info-value" type="number" data-field="height" value="{{userInfo.height}}" bindinput="handleInputChange"/>
+      </block>
+    </view>
+
+    <view class="info-item">
+      <text class="info-label">体重</text>
+      <block wx:if="{{!isEditing}}">
+        <text class="info-value">{{userInfo.weight}}kg</text>
+      </block>
+      <block wx:else>
+        <input class="info-value" type="number" data-field="weight" value="{{userInfo.weight}}" bindinput="handleInputChange"/>
+      </block>
+    </view>
+
+    <view class="info-item">
+      <text class="info-label">血型</text>
+      <block wx:if="{{!isEditing}}">
+        <text class="info-value">{{userInfo.bloodType}}型</text>
+      </block>
+      <block wx:else>
+        <picker 
+          class="info-value" 
+          mode="selector" 
+          range="{{['A','B','AB','O']}}" 
+          value="{{['A','B','AB','O'].indexOf(userInfo.bloodType)}}"
+          data-field="bloodType" 
+          bindchange="handlePickerChange">
+          <text>{{userInfo.bloodType}}型</text>
+        </picker>
+      </block>
+    </view>
+
+    <view class="info-item">
+      <text class="info-label">BMI指数</text>
+      <text class="info-value">{{userInfo.bmi}}</text>
+      <text class="bmi-status">{{userInfo.bmiStatus}}</text>
+    </view>
+  </view>
+
+  <view class="action-buttons">
+    <button type="{{isEditing ? 'default' : 'primary'}}" size="mini" bindtap="toggleEdit">
+      {{isEditing ? '取消编辑' : '编辑信息'}}
+    </button>
+    <button wx:if="{{isEditing}}" type="primary" size="mini" bindtap="saveToStorage">保存修改</button>
+  </view>
+</view>

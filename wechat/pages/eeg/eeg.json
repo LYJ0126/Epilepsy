@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "癫痫检测",
+  "navigationBarBackgroundColor": "#f2f5e0",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle":"light"
+}

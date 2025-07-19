@@ -1,0 +1,56 @@
+{
+  "entryPagePath": "pages/login/login",
+  "pages": [
+    "pages/login/login",
+    "pages/eeg/eeg",
+    "pages/eeg2/eeg2",
+    "pages/person/person",
+    "pages/register/register",
+    "pages/aiagent/aiagent"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "癫痫检测系统",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "selectedColor": "#a2b416",
+    "list": [
+      {
+        "pagePath": "pages/eeg/eeg",
+        "text": "癫痫检测",
+        "iconPath": "images/brain1.png",
+        "selectedIconPath": "images/brain2.png"
+      },
+      {
+        "pagePath": "pages/eeg2/eeg2",
+        "text": "检测结果",
+        "iconPath": "images/brain1.png",
+        "selectedIconPath": "images/brain2.png"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "text": "个人中心",
+        "iconPath": "images/user1.png",
+        "selectedIconPath": "images/user2.png"
+      },
+      {
+        "pagePath": "pages/aiagent/aiagent",
+        "text": "癫痫健康助手",
+        "iconPath": "images/agent1.png",
+        "selectedIconPath": "images/agent2.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "custom-navbar": "/components/custom-navbar/custom-navbar"
+  }
+}

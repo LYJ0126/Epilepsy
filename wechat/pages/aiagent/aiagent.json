@@ -1,0 +1,28 @@
+{
+    "navigationBarBackgroundColor": "#1890ff",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "癫痫健康助手",
+    "backgroundColor": "#f5f5f5",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "navigationStyle": "custom",
+    "backgroundColorTop": "#1890ff",
+    "backgroundColorBottom": "#f5f5f5",
+    "disableScroll": false,
+    "usingComponents": {
+      "custom-navbar": "/components/custom-navbar/custom-navbar"
+    },
+    "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#1890ff",
+      "navigationBarTitleText": "癫痫健康助手",
+      "navigationBarTextStyle": "white",
+      "backgroundColor": "#f5f5f5",
+      "enablePullDownRefresh": true,
+      "onReachBottomDistance": 50
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "themeLocation": "theme.json"
+  }

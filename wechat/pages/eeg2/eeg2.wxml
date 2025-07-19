@@ -1,0 +1,98 @@
+<!--<view class="epilepsy1">
+  <image class="epilepsy1_image" mode="scaleToFill" src="https://epilepsy.host/images/epilepsy11 (2).png"></image>
+</view>
+
+<view class="container">
+  <view class="control-panel">
+    <button 
+      class="control-btn {{isDetecting ? 'active' : ''}}" 
+      bindtap="toggleDetection"
+    >
+      {{isDetecting ? '结束检测' : '开始检测'}}
+    </button>
+    <view class="status-indicator">
+      <text class="status-text">检测状态: {{statusText}}</text>
+    </view>
+  </view>
+
+  <view class="result-panel">
+    <view class="result-card">
+      <text class="result-title">检测结果</text>
+      <view class="result-content">
+        <text class="result-text" style="color: {{resultColor}}; font-size: {{resultFontSize}}">
+          {{result}}
+        </text>
+        <text class="probability">置信度: {{probability}}%</text>
+      </view>
+    </view>
+    
+    <view class="waveform-panel">
+      <text class="waveform-title">肌电波形（共{{channelCount}}个通道）</text>
+      <scroll-view 
+        class="waveform-scroll"
+        scroll-y
+        enable-back-to-top
+        enhanced
+        show-scrollbar="{{false}}"
+      >
+        <image 
+          class="waveform-image" 
+          src="{{waveformImage}}" 
+          mode="widthFix" 
+          style="height: {{imageHeight}}px; min-height: 1000rpx"
+          wx:if="{{waveformImage}}"
+        />
+      </scroll-view>
+    </view>
+  </view>
+</view>-->
+
+<view class="epilepsy1">
+  <image class="epilepsy1_image" mode="scaleToFill" src="https://epilepsy.host/images/epilepsy11 (2).png"></image>
+</view>
+
+<view class="container">
+  <view class="control-panel">
+    <button 
+      class="control-btn" 
+      bindtap="getWaveform"
+      disabled="{{isLoading}}"
+    >
+      {{isLoading ? '获取中...' : '获取结果'}}
+    </button>
+    <view class="status-indicator">
+      <text class="status-text">状态: {{statusText}}</text>
+      <text class="time-text" wx:if="{{createdTime}}">生成时间: {{createdTime}}</text>
+    </view>
+  </view>
+
+  <view class="result-panel">
+    <view class="result-card">
+      <text class="result-title">脑电波形图</text>
+      <view class="result-content">
+        <text class="result-text">{{result}}</text>
+      </view>
+    </view>
+    
+    <view class="waveform-panel">
+      <scroll-view 
+        class="waveform-scroll"
+        scroll-y
+        enable-back-to-top
+        enhanced
+        show-scrollbar="{{false}}"
+      >
+        <image 
+          class="waveform-image" 
+          src="{{waveformImage}}" 
+          mode="widthFix" 
+          style="height: {{imageHeight}}px;"
+          wx:if="{{waveformImage}}"
+        />
+        <view class="no-data" wx:else>
+          <text>暂无波形图数据</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

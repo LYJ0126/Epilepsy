@@ -1,0 +1,25 @@
+<view class="login-container">
+  <image class="logo" src="https://epilepsy.host/images/logo.png"></image>
+  
+  <view class="form">
+    <view class="input-group">
+      <text class="label">用户名</text>
+      <input class="input" placeholder="请输入用户名" value="{{username}}" bindinput="onUsernameInput" />
+    </view>
+    
+    <view class="input-group">
+      <text class="label">密码</text>
+      <input class="input" password placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+    </view>
+    
+    <button class="login-btn" type="primary" bindtap="onLogin">登录</button>
+    
+    <view class="register-link" bindtap="onRegister">
+      <text>没有账号？立即注册</text>
+    </view>
+  </view>
+  
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>登录中...</text>
+  </view>
+</view>

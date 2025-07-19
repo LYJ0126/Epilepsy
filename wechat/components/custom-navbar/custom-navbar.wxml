@@ -1,0 +1,18 @@
+<!-- components/custom-navbar/custom-navbar.wxml -->
+<view class="navbar" style="height: {{statusBarHeight}}px; background: {{bgColor}}">
+  <view class="navbar-content" style="height: {{navBarHeight}}px;">
+    <!-- 左侧返回按钮 -->
+    <view wx:if="{{showBack}}" class="back-btn" bindtap="goBack">
+      <image src="/images/icons/back-white.png" mode="aspectFit"></image>
+    </view>
+    
+    <!-- 标题 -->
+    <view class="title">{{title}}</view>
+    
+    <!-- 右侧操作 -->
+    <view class="actions">
+      <image wx:if="{{showEmergency}}" src="/images/icons/emergency.png" bindtap="onEmergency" class="action-icon"></image>
+      <image src="/images/icons/user.png" bindtap="onUser" class="action-icon"></image>
+    </view>
+  </view>
+</view>
